@@ -17,7 +17,7 @@ import { ProductsModule } from './products/products.module';
 import { OrdersModule } from './orders/orders.module';
 import { CartModule } from './cart/cart.module';
 import { PaymentModule } from './payment/payment.module';
-import { AuthModule } from './auth/auth.module'; // Correction : .module au lieu de .service
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -33,7 +33,7 @@ import { AuthModule } from './auth/auth.module'; // Correction : .module au lieu
     SequelizeModule.forRoot({
       dialect: 'postgres',
       host: process.env.DB_HOST || 'localhost',
-      port: parseInt(process.env.DB_PORT) || 5432,
+      port: parseInt(process.env.DB_PORT || '5432'),
       username: process.env.DB_USERNAME || 'postgres',
       password: process.env.DB_PASSWORD || 'password',
       database: process.env.DB_NAME || 'ecommerce',
@@ -54,3 +54,4 @@ import { AuthModule } from './auth/auth.module'; // Correction : .module au lieu
     PaymentModule,
   ],
 })
+export class AppModule {}

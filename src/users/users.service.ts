@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { User } from '../models/user.model';
 
@@ -17,20 +17,30 @@ export class UsersService {
     return this.userModel.findAll();
   }
 
-  async findOne(id: number): Promise<User> {
+  async findOne(id: number): Promise<User | null> {
     return this.userModel.findByPk(id);
   }
 
-  async findByEmail(email: string): Promise<User> {
+  async findByEmail(email: string): Promise<User | null> {
     return this.userModel.findOne({ where: { email } });
   }
 
   async update(id: number, userData: Partial<User>): Promise<User> {
+    const user = await this.findOne(id);
+    if (!user) {
+      throw new NotFoundException(`User with id ${id} not found`);
+    }
+    
     await this.userModel.update(userData, { where: { id } });
-    return this.findOne(id);
+    return this.findOne(id)!;
   }
 
   async remove(id: number): Promise<void> {
+    const user = await this.findOne(id);
+    if (!user) {
+      throw new NotFoundException(`User with id ${id} not found`);
+    }
+    
     await this.userModel.destroy({ where: { id } });
   }
 }

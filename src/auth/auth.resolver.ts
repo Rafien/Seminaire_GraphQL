@@ -11,7 +11,7 @@ class AuthPayload {
   user: User;
 }
 
-@Resolver()
+@Resolver(() => AuthPayload)
 export class AuthResolver {
   constructor(private authService: AuthService) {}
 
@@ -20,7 +20,7 @@ export class AuthResolver {
     @Args('name') name: string,
     @Args('email') email: string,
     @Args('password') password: string,
-  ) {
+  ): Promise<AuthPayload> {
     return this.authService.register(name, email, password);
   }
 
@@ -28,7 +28,7 @@ export class AuthResolver {
   async login(
     @Args('email') email: string,
     @Args('password') password: string,
-  ) {
+  ): Promise<AuthPayload> {
     return this.authService.login(email, password);
   }
 }

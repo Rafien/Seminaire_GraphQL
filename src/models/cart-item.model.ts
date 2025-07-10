@@ -5,7 +5,7 @@ import { Product } from './product.model';
 
 @ObjectType()
 @Table({ tableName: 'cart_items' })
-export class CartItem extends Model {
+export class CartItem extends Model<CartItem> {
   @Field(() => ID)
   @Column({
     type: DataType.INTEGER,

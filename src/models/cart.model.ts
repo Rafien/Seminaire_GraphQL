@@ -5,7 +5,7 @@ import { CartItem } from './cart-item.model';
 
 @ObjectType()
 @Table({ tableName: 'carts' })
-export class Cart extends Model {
+export class Cart extends Model<Cart> {
   @Field(() => ID)
   @Column({
     type: DataType.INTEGER,
@@ -26,9 +26,12 @@ export class Cart extends Model {
   @HasMany(() => CartItem)
   items: CartItem[];
 
-  // Ajout d'un champ calculé pour le total
   @Field(() => Float)
   get total(): number {
-    return this.items?.reduce((sum, item) => sum + (item.product?.price || 0) * item.quantity, 0) || 0;
+    if (!this.items || this.items.length === 0) return 0;
+    return this.items.reduce((sum, item) => {
+      const price = item.product?.price || 0;
+      return sum + (price * item.quantity);
+    }, 0);
   }
 }

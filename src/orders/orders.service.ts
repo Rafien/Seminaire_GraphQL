@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Order, OrderStatus } from '../models/order.model';
 import { OrderProduct } from '../models/order-product.model';
@@ -19,11 +19,19 @@ export class OrdersService {
   async createOrder(userId: number, shippingAddress: string): Promise<Order> {
     const cart = await this.cartService.findOrCreateCart(userId);
     
+    if (!cart.items || cart.items.length === 0) {
+      throw new Error('Cart is empty');
+    }
+
     let total = 0;
     const orderItems = [];
 
     for (const item of cart.items) {
       const product = await this.productsService.findOne(item.productId);
+      if (!product) {
+        throw new NotFoundException(`Product with id ${item.productId} not found`);
+      }
+      
       const itemTotal = product.price * item.quantity;
       total += itemTotal;
       
@@ -65,9 +73,15 @@ export class OrdersService {
   }
 
   async findOne(id: number): Promise<Order> {
-    return this.orderModel.findByPk(id, {
+    const order = await this.orderModel.findByPk(id, {
       include: ['user', 'products'],
     });
+    
+    if (!order) {
+      throw new NotFoundException(`Order with id ${id} not found`);
+    }
+    
+    return order;
   }
 
   async findByUser(userId: number): Promise<Order[]> {
@@ -78,6 +92,7 @@ export class OrdersService {
   }
 
   async updateStatus(id: number, status: OrderStatus): Promise<Order> {
+    const order = await this.findOne(id);
     await this.orderModel.update({ status }, { where: { id } });
     return this.findOne(id);
   }

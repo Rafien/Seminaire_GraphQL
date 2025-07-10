@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Cart } from '../models/cart.model';
 import { CartItem } from '../models/cart-item.model';
@@ -21,9 +21,13 @@ export class CartService {
 
     if (!cart) {
       cart = await this.cartModel.create({ userId });
+      // Recharger avec les associations
+      cart = await this.cartModel.findByPk(cart.id, {
+        include: [{ model: CartItem, include: [Product] }],
+      });
     }
 
-    return cart;
+    return cart!;
   }
 
   async addToCart(userId: number, productId: number, quantity: number): Promise<Cart> {

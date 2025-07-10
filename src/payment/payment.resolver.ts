@@ -9,7 +9,7 @@ class PaymentIntent {
   clientSecret: string;
 }
 
-@Resolver()
+@Resolver(() => PaymentIntent)
 @UseGuards(AuthGuard('jwt'))
 export class PaymentResolver {
   constructor(private paymentService: PaymentService) {}
@@ -17,7 +17,7 @@ export class PaymentResolver {
   @Mutation(() => PaymentIntent)
   async createPaymentIntent(
     @Args('orderId', { type: () => ID }) orderId: number,
-  ) {
+  ): Promise<PaymentIntent> {
     return this.paymentService.createPaymentIntent(orderId);
   }
 }

@@ -1,0 +1,957 @@
+Building app
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from dockerfile
+#1 transferring dockerfile: 454B done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/node:18-alpine
+#2 DONE 0.6s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/7] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 2.84MB 1.7s done
+#5 DONE 1.8s
+
+#6 [3/7] WORKDIR /app
+#6 CACHED
+
+#7 [4/7] COPY package*.json ./
+#7 CACHED
+
+#8 [2/7] RUN apk add --no-cache python3 make g++
+#8 CACHED
+
+#9 [5/7] RUN npm ci --only=production
+#9 CACHED
+
+#10 [6/7] COPY . .
+#10 DONE 4.4s
+
+#11 [7/7] RUN npm run build
+#11 0.509 
+#11 0.509 > ecommerce-api@1.0.0 build
+#11 0.509 > nest build
+#11 0.509 
+#11 5.364 [96msrc/app.module.ts[0m:[93m31[0m:[93m19[0m - [91merror[0m[90m TS7031: [0mBinding element 'req' implicitly has an 'any' type.
+#11 5.364 
+#11 5.364 [7m31[0m       context: ({ req }) => ({ req }),
+#11 5.364 [7m  [0m [91m                  ~~~[0m
+#11 5.364 [96msrc/app.module.ts[0m:[93m36[0m:[93m22[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string | undefined' is not assignable to parameter of type 'string'.
+#11 5.364   Type 'undefined' is not assignable to type 'string'.
+#11 5.364 
+#11 5.364 [7m36[0m       port: parseInt(process.env.DB_PORT) || 5432,
+#11 5.364 [7m  [0m [91m                     ~~~~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/auth/auth.resolver.ts[0m:[93m7[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.364 
+#11 5.364 [7m7[0m   @Field()
+#11 5.364 [7m [0m [91m   ~~~~~~~[0m
+#11 5.364 [96msrc/auth/auth.resolver.ts[0m:[93m8[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'access_token' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m8[0m   access_token: string;
+#11 5.364 [7m [0m [91m  ~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/auth/auth.resolver.ts[0m:[93m10[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.364 
+#11 5.364 [7m10[0m   @Field(() => User)
+#11 5.364 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/auth/auth.resolver.ts[0m:[93m11[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'user' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m11[0m   user: User;
+#11 5.364 [7m  [0m [91m  ~~~~[0m
+#11 5.364 [96msrc/auth/auth.resolver.ts[0m:[93m18[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+#11 5.364   The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+#11 5.364 
+#11 5.364 [7m18[0m   @Mutation(() => AuthPayload)
+#11 5.364 [7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.364 
+#11 5.364   [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+#11 5.364     [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+#11 5.364     [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.364     An argument for 'descriptor' was not provided.
+#11 5.364 [96msrc/auth/auth.resolver.ts[0m:[93m18[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((name: string, email: string, password: string) => Promise<{ access_token: string; user: User; }>)'.
+#11 5.364   Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((name: string, email: string, password: string) => Promise<{ access_token: string; user: User; }>)'.
+#11 5.364 
+#11 5.364 [7m18[0m   @Mutation(() => AuthPayload)
+#11 5.364 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/auth/auth.resolver.ts[0m:[93m20[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.364 
+#11 5.364 [7m20[0m     @Args('name') name: string,
+#11 5.364 [7m  [0m [91m    ~[0m
+#11 5.364 [96msrc/auth/auth.resolver.ts[0m:[93m21[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.364 
+#11 5.364 [7m21[0m     @Args('email') email: string,
+#11 5.364 [7m  [0m [91m    ~[0m
+#11 5.364 [96msrc/auth/auth.resolver.ts[0m:[93m22[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.364 
+#11 5.364 [7m22[0m     @Args('password') password: string,
+#11 5.364 [7m  [0m [91m    ~[0m
+#11 5.364 [96msrc/auth/auth.resolver.ts[0m:[93m27[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+#11 5.364   The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+#11 5.364 
+#11 5.364 [7m27[0m   @Mutation(() => AuthPayload)
+#11 5.364 [7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.364 
+#11 5.364   [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+#11 5.364     [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+#11 5.364     [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.364     An argument for 'descriptor' was not provided.
+#11 5.364 [96msrc/auth/auth.resolver.ts[0m:[93m27[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((email: string, password: string) => Promise<{ access_token: string; user: User; }>)'.
+#11 5.364   Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((email: string, password: string) => Promise<{ access_token: string; user: User; }>)'.
+#11 5.364 
+#11 5.364 [7m27[0m   @Mutation(() => AuthPayload)
+#11 5.364 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/auth/auth.resolver.ts[0m:[93m29[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.364 
+#11 5.364 [7m29[0m     @Args('email') email: string,
+#11 5.364 [7m  [0m [91m    ~[0m
+#11 5.364 [96msrc/auth/auth.resolver.ts[0m:[93m30[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.364 
+#11 5.364 [7m30[0m     @Args('password') password: string,
+#11 5.364 [7m  [0m [91m    ~[0m
+#11 5.364 [96msrc/cart/cart.resolver.ts[0m:[93m12[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+#11 5.364   The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+#11 5.364 
+#11 5.364 [7m12[0m   @Query(() => Cart)
+#11 5.364 [7m  [0m [91m  ~~~~~~~~~~~~~~~~~~[0m
+#11 5.364 
+#11 5.364   [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+#11 5.364     [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+#11 5.364     [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.364     An argument for 'descriptor' was not provided.
+#11 5.364 [96msrc/cart/cart.resolver.ts[0m:[93m12[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((context: any) => Promise<Cart>)'.
+#11 5.364   Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((context: any) => Promise<Cart>)'.
+#11 5.364 
+#11 5.364 [7m12[0m   @Query(() => Cart)
+#11 5.364 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/cart/cart.resolver.ts[0m:[93m13[0m:[93m14[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.364 
+#11 5.364 [7m13[0m   async cart(@Context() context) {
+#11 5.364 [7m  [0m [91m             ~[0m
+#11 5.364 [96msrc/cart/cart.resolver.ts[0m:[93m13[0m:[93m14[0m - [91merror[0m[90m TS7006: [0mParameter 'context' implicitly has an 'any' type.
+#11 5.364 
+#11 5.364 [7m13[0m   async cart(@Context() context) {
+#11 5.364 [7m  [0m [91m             ~~~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/cart/cart.resolver.ts[0m:[93m18[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+#11 5.364   The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+#11 5.364 
+#11 5.364 [7m18[0m   @Mutation(() => Cart)
+#11 5.364 [7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.364 
+#11 5.364   [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+#11 5.364     [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+#11 5.364     [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.364     An argument for 'descriptor' was not provided.
+#11 5.364 [96msrc/cart/cart.resolver.ts[0m:[93m18[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((productId: number, quantity: number, context: any) => Promise<Cart>)'.
+#11 5.364   Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((productId: number, quantity: number, context: any) => Promise<Cart>)'.
+#11 5.364 
+#11 5.364 [7m18[0m   @Mutation(() => Cart)
+#11 5.364 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/cart/cart.resolver.ts[0m:[93m20[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.364 
+#11 5.364 [7m20[0m     @Args('productId', { type: () => ID }) productId: number,
+#11 5.364 [7m  [0m [91m    ~[0m
+#11 5.364 [96msrc/cart/cart.resolver.ts[0m:[93m21[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.364 
+#11 5.364 [7m21[0m     @Args('quantity') quantity: number,
+#11 5.364 [7m  [0m [91m    ~[0m
+#11 5.364 [96msrc/cart/cart.resolver.ts[0m:[93m22[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.364 
+#11 5.364 [7m22[0m     @Context() context,
+#11 5.364 [7m  [0m [91m    ~[0m
+#11 5.364 [96msrc/cart/cart.resolver.ts[0m:[93m22[0m:[93m5[0m - [91merror[0m[90m TS7006: [0mParameter 'context' implicitly has an 'any' type.
+#11 5.364 
+#11 5.364 [7m22[0m     @Context() context,
+#11 5.364 [7m  [0m [91m    ~~~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/cart/cart.resolver.ts[0m:[93m28[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+#11 5.364   The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+#11 5.364 
+#11 5.364 [7m28[0m   @Mutation(() => Cart)
+#11 5.364 [7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.364 
+#11 5.364   [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+#11 5.364     [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+#11 5.364     [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.364     An argument for 'descriptor' was not provided.
+#11 5.364 [96msrc/cart/cart.resolver.ts[0m:[93m28[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((productId: number, context: any) => Promise<Cart>)'.
+#11 5.364   Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((productId: number, context: any) => Promise<Cart>)'.
+#11 5.364 
+#11 5.364 [7m28[0m   @Mutation(() => Cart)
+#11 5.364 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/cart/cart.resolver.ts[0m:[93m30[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.364 
+#11 5.364 [7m30[0m     @Args('productId', { type: () => ID }) productId: number,
+#11 5.364 [7m  [0m [91m    ~[0m
+#11 5.364 [96msrc/cart/cart.resolver.ts[0m:[93m31[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.364 
+#11 5.364 [7m31[0m     @Context() context,
+#11 5.364 [7m  [0m [91m    ~[0m
+#11 5.364 [96msrc/cart/cart.resolver.ts[0m:[93m31[0m:[93m5[0m - [91merror[0m[90m TS7006: [0mParameter 'context' implicitly has an 'any' type.
+#11 5.364 
+#11 5.364 [7m31[0m     @Context() context,
+#11 5.364 [7m  [0m [91m    ~~~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/cart/cart.resolver.ts[0m:[93m37[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+#11 5.364   The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+#11 5.364 
+#11 5.364 [7m37[0m   @Mutation(() => Cart)
+#11 5.364 [7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.364 
+#11 5.364   [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+#11 5.364     [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+#11 5.364     [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.364     An argument for 'descriptor' was not provided.
+#11 5.364 [96msrc/cart/cart.resolver.ts[0m:[93m37[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((context: any) => Promise<Cart>)'.
+#11 5.364   Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((context: any) => Promise<Cart>)'.
+#11 5.364 
+#11 5.364 [7m37[0m   @Mutation(() => Cart)
+#11 5.364 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/cart/cart.resolver.ts[0m:[93m38[0m:[93m19[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.364 
+#11 5.364 [7m38[0m   async clearCart(@Context() context) {
+#11 5.364 [7m  [0m [91m                  ~[0m
+#11 5.364 [96msrc/cart/cart.resolver.ts[0m:[93m38[0m:[93m19[0m - [91merror[0m[90m TS7006: [0mParameter 'context' implicitly has an 'any' type.
+#11 5.364 
+#11 5.364 [7m38[0m   async clearCart(@Context() context) {
+#11 5.364 [7m  [0m [91m                  ~~~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/cart/cart.service.ts[0m:[93m10[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.364 
+#11 5.364 [7m10[0m     @InjectModel(Cart)
+#11 5.364 [7m  [0m [91m    ~[0m
+#11 5.364 [96msrc/cart/cart.service.ts[0m:[93m12[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.364 
+#11 5.364 [7m12[0m     @InjectModel(CartItem)
+#11 5.364 [7m  [0m [91m    ~[0m
+#11 5.364 [96msrc/models/cart-item.model.ts[0m:[93m9[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.364 
+#11 5.364 [7m9[0m   @Field(() => ID)
+#11 5.364 [7m [0m [91m   ~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/models/cart-item.model.ts[0m:[93m15[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'id' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m15[0m   id: number;
+#11 5.364 [7m  [0m [91m  ~~[0m
+#11 5.364 [96msrc/models/cart-item.model.ts[0m:[93m17[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.364 
+#11 5.364 [7m17[0m   @Field(() => Int)
+#11 5.364 [7m  [0m [91m   ~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/models/cart-item.model.ts[0m:[93m22[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'quantity' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m22[0m   quantity: number;
+#11 5.364 [7m  [0m [91m  ~~~~~~~~[0m
+#11 5.364 [96msrc/models/cart-item.model.ts[0m:[93m25[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   No overload matches this call.
+#11 5.364     Overload 1 of 3, '(dataType: DataType): Function', gave the following error.
+#11 5.364       Argument of type 'undefined' is not assignable to parameter of type 'DataType'.
+#11 5.364     Overload 2 of 3, '(options: Partial<ModelAttributeColumnOptions<Model<any, any>>>): Function', gave the following error.
+#11 5.364       Argument of type 'undefined' is not assignable to parameter of type 'Partial<ModelAttributeColumnOptions<Model<any, any>>>'.
+#11 5.364     Overload 3 of 3, '(target: any, propertyName: string, propertyDescriptor?: PropertyDescriptor | undefined): void', gave the following error.
+#11 5.364       Argument of type 'ClassFieldDecoratorContext<CartItem, number> & { name: "cartId"; private: false; static: false; }' is not assignable to parameter of type 'string'.
+#11 5.364 
+#11 5.364 [7m25[0m   @Column
+#11 5.364 [7m  [0m [91m   ~~~~~~[0m
+#11 5.364 
+#11 5.364 [96msrc/models/cart-item.model.ts[0m:[93m26[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'cartId' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m26[0m   cartId: number;
+#11 5.364 [7m  [0m [91m  ~~~~~~[0m
+#11 5.364 [96msrc/models/cart-item.model.ts[0m:[93m29[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   No overload matches this call.
+#11 5.364     Overload 1 of 3, '(dataType: DataType): Function', gave the following error.
+#11 5.364       Argument of type 'undefined' is not assignable to parameter of type 'DataType'.
+#11 5.364     Overload 2 of 3, '(options: Partial<ModelAttributeColumnOptions<Model<any, any>>>): Function', gave the following error.
+#11 5.364       Argument of type 'undefined' is not assignable to parameter of type 'Partial<ModelAttributeColumnOptions<Model<any, any>>>'.
+#11 5.364     Overload 3 of 3, '(target: any, propertyName: string, propertyDescriptor?: PropertyDescriptor | undefined): void', gave the following error.
+#11 5.364       Argument of type 'ClassFieldDecoratorContext<CartItem, number> & { name: "productId"; private: false; static: false; }' is not assignable to parameter of type 'string'.
+#11 5.364 
+#11 5.364 [7m29[0m   @Column
+#11 5.364 [7m  [0m [91m   ~~~~~~[0m
+#11 5.364 
+#11 5.364 [96msrc/models/cart-item.model.ts[0m:[93m30[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'productId' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m30[0m   productId: number;
+#11 5.364 [7m  [0m [91m  ~~~~~~~~~[0m
+#11 5.364 [96msrc/models/cart-item.model.ts[0m:[93m32[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.364 
+#11 5.364 [7m32[0m   @Field(() => Cart)
+#11 5.364 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/models/cart-item.model.ts[0m:[93m34[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'cart' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m34[0m   cart: Cart;
+#11 5.364 [7m  [0m [91m  ~~~~[0m
+#11 5.364 [96msrc/models/cart-item.model.ts[0m:[93m36[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.364 
+#11 5.364 [7m36[0m   @Field(() => Product)
+#11 5.364 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/models/cart-item.model.ts[0m:[93m38[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'product' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m38[0m   product: Product;
+#11 5.364 [7m  [0m [91m  ~~~~~~~[0m
+#11 5.364 [96msrc/models/cart.model.ts[0m:[93m9[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.364 
+#11 5.364 [7m9[0m   @Field(() => ID)
+#11 5.364 [7m [0m [91m   ~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/models/cart.model.ts[0m:[93m15[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'id' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m15[0m   id: number;
+#11 5.364 [7m  [0m [91m  ~~[0m
+#11 5.364 [96msrc/models/cart.model.ts[0m:[93m18[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   No overload matches this call.
+#11 5.364     Overload 1 of 3, '(dataType: DataType): Function', gave the following error.
+#11 5.364       Argument of type 'undefined' is not assignable to parameter of type 'DataType'.
+#11 5.364     Overload 2 of 3, '(options: Partial<ModelAttributeColumnOptions<Model<any, any>>>): Function', gave the following error.
+#11 5.364       Argument of type 'undefined' is not assignable to parameter of type 'Partial<ModelAttributeColumnOptions<Model<any, any>>>'.
+#11 5.364     Overload 3 of 3, '(target: any, propertyName: string, propertyDescriptor?: PropertyDescriptor | undefined): void', gave the following error.
+#11 5.364       Argument of type 'ClassFieldDecoratorContext<Cart, number> & { name: "userId"; private: false; static: false; }' is not assignable to parameter of type 'string'.
+#11 5.364 
+#11 5.364 [7m18[0m   @Column
+#11 5.364 [7m  [0m [91m   ~~~~~~[0m
+#11 5.364 
+#11 5.364 [96msrc/models/cart.model.ts[0m:[93m19[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'userId' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m19[0m   userId: number;
+#11 5.364 [7m  [0m [91m  ~~~~~~[0m
+#11 5.364 [96msrc/models/cart.model.ts[0m:[93m21[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.364 
+#11 5.364 [7m21[0m   @Field(() => User)
+#11 5.364 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/models/cart.model.ts[0m:[93m23[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'user' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m23[0m   user: User;
+#11 5.364 [7m  [0m [91m  ~~~~[0m
+#11 5.364 [96msrc/models/cart.model.ts[0m:[93m25[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.364 
+#11 5.364 [7m25[0m   @Field(() => [CartItem])
+#11 5.364 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/models/cart.model.ts[0m:[93m27[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'items' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m27[0m   items: CartItem[];
+#11 5.364 [7m  [0m [91m  ~~~~~[0m
+#11 5.364 [96msrc/models/cart.model.ts[0m:[93m30[0m:[93m4[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+#11 5.364   Argument of type 'ClassMethodDecoratorContext<Cart, () => number> & { name: "getTotal"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+#11 5.364 
+#11 5.364 [7m30[0m   @Field(() => Float)
+#11 5.364 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/models/order-product.model.ts[0m:[93m8[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   No overload matches this call.
+#11 5.364     Overload 1 of 3, '(dataType: DataType): Function', gave the following error.
+#11 5.364       Argument of type 'undefined' is not assignable to parameter of type 'DataType'.
+#11 5.364     Overload 2 of 3, '(options: Partial<ModelAttributeColumnOptions<Model<any, any>>>): Function', gave the following error.
+#11 5.364       Argument of type 'undefined' is not assignable to parameter of type 'Partial<ModelAttributeColumnOptions<Model<any, any>>>'.
+#11 5.364     Overload 3 of 3, '(target: any, propertyName: string, propertyDescriptor?: PropertyDescriptor | undefined): void', gave the following error.
+#11 5.364       Argument of type 'ClassFieldDecoratorContext<OrderProduct, number> & { name: "orderId"; private: false; static: false; }' is not assignable to parameter of type 'string'.
+#11 5.364 
+#11 5.364 [7m8[0m   @Column
+#11 5.364 [7m [0m [91m   ~~~~~~[0m
+#11 5.364 
+#11 5.364 [96msrc/models/order-product.model.ts[0m:[93m9[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'orderId' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m9[0m   orderId: number;
+#11 5.364 [7m [0m [91m  ~~~~~~~[0m
+#11 5.364 [96msrc/models/order-product.model.ts[0m:[93m12[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   No overload matches this call.
+#11 5.364     Overload 1 of 3, '(dataType: DataType): Function', gave the following error.
+#11 5.364       Argument of type 'undefined' is not assignable to parameter of type 'DataType'.
+#11 5.364     Overload 2 of 3, '(options: Partial<ModelAttributeColumnOptions<Model<any, any>>>): Function', gave the following error.
+#11 5.364       Argument of type 'undefined' is not assignable to parameter of type 'Partial<ModelAttributeColumnOptions<Model<any, any>>>'.
+#11 5.364     Overload 3 of 3, '(target: any, propertyName: string, propertyDescriptor?: PropertyDescriptor | undefined): void', gave the following error.
+#11 5.364       Argument of type 'ClassFieldDecoratorContext<OrderProduct, number> & { name: "productId"; private: false; static: false; }' is not assignable to parameter of type 'string'.
+#11 5.364 
+#11 5.364 [7m12[0m   @Column
+#11 5.364 [7m  [0m [91m   ~~~~~~[0m
+#11 5.364 
+#11 5.364 [96msrc/models/order-product.model.ts[0m:[93m13[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'productId' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m13[0m   productId: number;
+#11 5.364 [7m  [0m [91m  ~~~~~~~~~[0m
+#11 5.364 [96msrc/models/order-product.model.ts[0m:[93m19[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'quantity' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m19[0m   quantity: number;
+#11 5.364 [7m  [0m [91m  ~~~~~~~~[0m
+#11 5.364 [96msrc/models/order-product.model.ts[0m:[93m24[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'price' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m24[0m   price: number;
+#11 5.364 [7m  [0m [91m  ~~~~~[0m
+#11 5.364 [96msrc/models/order.model.ts[0m:[93m22[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.364 
+#11 5.364 [7m22[0m   @Field(() => ID)
+#11 5.364 [7m  [0m [91m   ~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/models/order.model.ts[0m:[93m28[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'id' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m28[0m   id: number;
+#11 5.364 [7m  [0m [91m  ~~[0m
+#11 5.364 [96msrc/models/order.model.ts[0m:[93m30[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.364 
+#11 5.364 [7m30[0m   @Field(() => Float)
+#11 5.364 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/models/order.model.ts[0m:[93m35[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'total' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m35[0m   total: number;
+#11 5.364 [7m  [0m [91m  ~~~~~[0m
+#11 5.364 [96msrc/models/order.model.ts[0m:[93m37[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.364 
+#11 5.364 [7m37[0m   @Field(() => OrderStatus)
+#11 5.364 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/models/order.model.ts[0m:[93m42[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'status' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m42[0m   status: OrderStatus;
+#11 5.364 [7m  [0m [91m  ~~~~~~[0m
+#11 5.364 [96msrc/models/order.model.ts[0m:[93m44[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.364 
+#11 5.364 [7m44[0m   @Field()
+#11 5.364 [7m  [0m [91m   ~~~~~~~[0m
+#11 5.364 [96msrc/models/order.model.ts[0m:[93m48[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'shippingAddress' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m48[0m   shippingAddress: string;
+#11 5.364 [7m  [0m [91m  ~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/models/order.model.ts[0m:[93m51[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   No overload matches this call.
+#11 5.364     Overload 1 of 3, '(dataType: DataType): Function', gave the following error.
+#11 5.364       Argument of type 'undefined' is not assignable to parameter of type 'DataType'.
+#11 5.364     Overload 2 of 3, '(options: Partial<ModelAttributeColumnOptions<Model<any, any>>>): Function', gave the following error.
+#11 5.364       Argument of type 'undefined' is not assignable to parameter of type 'Partial<ModelAttributeColumnOptions<Model<any, any>>>'.
+#11 5.364     Overload 3 of 3, '(target: any, propertyName: string, propertyDescriptor?: PropertyDescriptor | undefined): void', gave the following error.
+#11 5.364       Argument of type 'ClassFieldDecoratorContext<Order, number> & { name: "userId"; private: false; static: false; }' is not assignable to parameter of type 'string'.
+#11 5.364 
+#11 5.364 [7m51[0m   @Column
+#11 5.364 [7m  [0m [91m   ~~~~~~[0m
+#11 5.364 
+#11 5.364 [96msrc/models/order.model.ts[0m:[93m52[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'userId' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m52[0m   userId: number;
+#11 5.364 [7m  [0m [91m  ~~~~~~[0m
+#11 5.364 [96msrc/models/order.model.ts[0m:[93m54[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.364 
+#11 5.364 [7m54[0m   @Field(() => User)
+#11 5.364 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/models/order.model.ts[0m:[93m56[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'user' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m56[0m   user: User;
+#11 5.364 [7m  [0m [91m  ~~~~[0m
+#11 5.364 [96msrc/models/order.model.ts[0m:[93m58[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.364 
+#11 5.364 [7m58[0m   @Field(() => [Product])
+#11 5.364 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/models/order.model.ts[0m:[93m60[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'products' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m60[0m   products: Product[];
+#11 5.364 [7m  [0m [91m  ~~~~~~~~[0m
+#11 5.364 [96msrc/models/product.model.ts[0m:[93m9[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.364 
+#11 5.364 [7m9[0m   @Field(() => ID)
+#11 5.364 [7m [0m [91m   ~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/models/product.model.ts[0m:[93m15[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'id' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m15[0m   id: number;
+#11 5.364 [7m  [0m [91m  ~~[0m
+#11 5.364 [96msrc/models/product.model.ts[0m:[93m17[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.364 
+#11 5.364 [7m17[0m   @Field()
+#11 5.364 [7m  [0m [91m   ~~~~~~~[0m
+#11 5.364 [96msrc/models/product.model.ts[0m:[93m22[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'name' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m22[0m   name: string;
+#11 5.364 [7m  [0m [91m  ~~~~[0m
+#11 5.364 [96msrc/models/product.model.ts[0m:[93m24[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.364 
+#11 5.364 [7m24[0m   @Field(() => Float)
+#11 5.364 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/models/product.model.ts[0m:[93m29[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'price' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m29[0m   price: number;
+#11 5.364 [7m  [0m [91m  ~~~~~[0m
+#11 5.364 [96msrc/models/product.model.ts[0m:[93m31[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.364 
+#11 5.364 [7m31[0m   @Field({ nullable: true })
+#11 5.364 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/models/product.model.ts[0m:[93m35[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'description' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m35[0m   description: string;
+#11 5.364 [7m  [0m [91m  ~~~~~~~~~~~[0m
+#11 5.364 [96msrc/models/product.model.ts[0m:[93m37[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.364 
+#11 5.364 [7m37[0m   @Field(() => Int)
+#11 5.364 [7m  [0m [91m   ~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/models/product.model.ts[0m:[93m42[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'stock' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m42[0m   stock: number;
+#11 5.364 [7m  [0m [91m  ~~~~~[0m
+#11 5.364 [96msrc/models/product.model.ts[0m:[93m44[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.364 
+#11 5.364 [7m44[0m   @Field({ nullable: true })
+#11 5.364 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/models/product.model.ts[0m:[93m48[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'image' has no initializer and is not definitely assigned in the constructor.
+#11 5.364 
+#11 5.364 [7m48[0m   image: string;
+#11 5.364 [7m  [0m [91m  ~~~~~[0m
+#11 5.364 [96msrc/models/product.model.ts[0m:[93m50[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.364   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.364 
+#11 5.364 [7m50[0m   @Field(() => [Order])
+#11 5.364 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.364 [96msrc/models/product.model.ts[0m:[93m52[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'orders' has no initializer and is not definitely assigned in the constructor.
+#11 5.365 
+#11 5.365 [7m52[0m   orders: Order[];
+#11 5.365 [7m  [0m [91m  ~~~~~~[0m
+#11 5.365 [96msrc/models/user.model.ts[0m:[93m9[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.365   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.365 
+#11 5.365 [7m9[0m   @Field(() => ID)
+#11 5.365 [7m [0m [91m   ~~~~~~~~~~~~~~~[0m
+#11 5.365 [96msrc/models/user.model.ts[0m:[93m15[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'id' has no initializer and is not definitely assigned in the constructor.
+#11 5.365 
+#11 5.365 [7m15[0m   id: number;
+#11 5.365 [7m  [0m [91m  ~~[0m
+#11 5.365 [96msrc/models/user.model.ts[0m:[93m17[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.365   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.365 
+#11 5.365 [7m17[0m   @Field()
+#11 5.365 [7m  [0m [91m   ~~~~~~~[0m
+#11 5.365 [96msrc/models/user.model.ts[0m:[93m22[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'name' has no initializer and is not definitely assigned in the constructor.
+#11 5.365 
+#11 5.365 [7m22[0m   name: string;
+#11 5.365 [7m  [0m [91m  ~~~~[0m
+#11 5.365 [96msrc/models/user.model.ts[0m:[93m24[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.365   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.365 
+#11 5.365 [7m24[0m   @Field()
+#11 5.365 [7m  [0m [91m   ~~~~~~~[0m
+#11 5.365 [96msrc/models/user.model.ts[0m:[93m30[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'email' has no initializer and is not definitely assigned in the constructor.
+#11 5.365 
+#11 5.365 [7m30[0m   email: string;
+#11 5.365 [7m  [0m [91m  ~~~~~[0m
+#11 5.365 [96msrc/models/user.model.ts[0m:[93m36[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'password' has no initializer and is not definitely assigned in the constructor.
+#11 5.365 
+#11 5.365 [7m36[0m   password: string;
+#11 5.365 [7m  [0m [91m  ~~~~~~~~[0m
+#11 5.365 [96msrc/models/user.model.ts[0m:[93m38[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.365   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.365 
+#11 5.365 [7m38[0m   @Field(() => [Order])
+#11 5.365 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 [96msrc/models/user.model.ts[0m:[93m40[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'orders' has no initializer and is not definitely assigned in the constructor.
+#11 5.365 
+#11 5.365 [7m40[0m   orders: Order[];
+#11 5.365 [7m  [0m [91m  ~~~~~~[0m
+#11 5.365 [96msrc/models/user.model.ts[0m:[93m42[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.365   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.365 
+#11 5.365 [7m42[0m   @Field(() => Cart, { nullable: true })
+#11 5.365 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 [96msrc/models/user.model.ts[0m:[93m44[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'cart' has no initializer and is not definitely assigned in the constructor.
+#11 5.365 
+#11 5.365 [7m44[0m   cart: Cart;
+#11 5.365 [7m  [0m [91m  ~~~~[0m
+#11 5.365 [96msrc/orders/orders.resolver.ts[0m:[93m12[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+#11 5.365   The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+#11 5.365 
+#11 5.365 [7m12[0m   @Query(() => [Order])
+#11 5.365 [7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 
+#11 5.365   [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+#11 5.365     [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+#11 5.365     [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365     An argument for 'descriptor' was not provided.
+#11 5.365 [96msrc/orders/orders.resolver.ts[0m:[93m12[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((context: any) => Promise<Order[]>)'.
+#11 5.365   Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((context: any) => Promise<Order[]>)'.
+#11 5.365 
+#11 5.365 [7m12[0m   @Query(() => [Order])
+#11 5.365 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 [96msrc/orders/orders.resolver.ts[0m:[93m13[0m:[93m16[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.365 
+#11 5.365 [7m13[0m   async orders(@Context() context) {
+#11 5.365 [7m  [0m [91m               ~[0m
+#11 5.365 [96msrc/orders/orders.resolver.ts[0m:[93m13[0m:[93m16[0m - [91merror[0m[90m TS7006: [0mParameter 'context' implicitly has an 'any' type.
+#11 5.365 
+#11 5.365 [7m13[0m   async orders(@Context() context) {
+#11 5.365 [7m  [0m [91m               ~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 [96msrc/orders/orders.resolver.ts[0m:[93m18[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+#11 5.365   The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+#11 5.365 
+#11 5.365 [7m18[0m   @Query(() => Order)
+#11 5.365 [7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 
+#11 5.365   [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+#11 5.365     [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+#11 5.365     [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365     An argument for 'descriptor' was not provided.
+#11 5.365 [96msrc/orders/orders.resolver.ts[0m:[93m18[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: number) => Promise<Order>)'.
+#11 5.365   Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: number) => Promise<Order>)'.
+#11 5.365 
+#11 5.365 [7m18[0m   @Query(() => Order)
+#11 5.365 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 [96msrc/orders/orders.resolver.ts[0m:[93m19[0m:[93m15[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.365 
+#11 5.365 [7m19[0m   async order(@Args('id', { type: () => ID }) id: number) {
+#11 5.365 [7m  [0m [91m              ~[0m
+#11 5.365 [96msrc/orders/orders.resolver.ts[0m:[93m23[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+#11 5.365   The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+#11 5.365 
+#11 5.365 [7m23[0m   @Mutation(() => Order)
+#11 5.365 [7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 
+#11 5.365   [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+#11 5.365     [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+#11 5.365     [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365     An argument for 'descriptor' was not provided.
+#11 5.365 [96msrc/orders/orders.resolver.ts[0m:[93m23[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((shippingAddress: string, context: any) => Promise<Order>)'.
+#11 5.365   Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((shippingAddress: string, context: any) => Promise<Order>)'.
+#11 5.365 
+#11 5.365 [7m23[0m   @Mutation(() => Order)
+#11 5.365 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 [96msrc/orders/orders.resolver.ts[0m:[93m25[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.365 
+#11 5.365 [7m25[0m     @Args('shippingAddress') shippingAddress: string,
+#11 5.365 [7m  [0m [91m    ~[0m
+#11 5.365 [96msrc/orders/orders.resolver.ts[0m:[93m26[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.365 
+#11 5.365 [7m26[0m     @Context() context,
+#11 5.365 [7m  [0m [91m    ~[0m
+#11 5.365 [96msrc/orders/orders.resolver.ts[0m:[93m26[0m:[93m5[0m - [91merror[0m[90m TS7006: [0mParameter 'context' implicitly has an 'any' type.
+#11 5.365 
+#11 5.365 [7m26[0m     @Context() context,
+#11 5.365 [7m  [0m [91m    ~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 [96msrc/orders/orders.resolver.ts[0m:[93m32[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+#11 5.365   The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+#11 5.365 
+#11 5.365 [7m32[0m   @Mutation(() => Order)
+#11 5.365 [7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 
+#11 5.365   [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+#11 5.365     [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+#11 5.365     [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365     An argument for 'descriptor' was not provided.
+#11 5.365 [96msrc/orders/orders.resolver.ts[0m:[93m32[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: number, status: OrderStatus) => Promise<Order>)'.
+#11 5.365   Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: number, status: OrderStatus) => Promise<Order>)'.
+#11 5.365 
+#11 5.365 [7m32[0m   @Mutation(() => Order)
+#11 5.365 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 [96msrc/orders/orders.resolver.ts[0m:[93m34[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.365 
+#11 5.365 [7m34[0m     @Args('id', { type: () => ID }) id: number,
+#11 5.365 [7m  [0m [91m    ~[0m
+#11 5.365 [96msrc/orders/orders.resolver.ts[0m:[93m35[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.365 
+#11 5.365 [7m35[0m     @Args('status', { type: () => OrderStatus }) status: OrderStatus,
+#11 5.365 [7m  [0m [91m    ~[0m
+#11 5.365 [96msrc/orders/orders.service.ts[0m:[93m11[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.365 
+#11 5.365 [7m11[0m     @InjectModel(Order)
+#11 5.365 [7m  [0m [91m    ~[0m
+#11 5.365 [96msrc/orders/orders.service.ts[0m:[93m13[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.365 
+#11 5.365 [7m13[0m     @InjectModel(OrderProduct)
+#11 5.365 [7m  [0m [91m    ~[0m
+#11 5.365 [96msrc/orders/orders.service.ts[0m:[93m68[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType 'Order | null' is not assignable to type 'Order'.
+#11 5.365   Type 'null' is not assignable to type 'Order'.
+#11 5.365 
+#11 5.365 [7m68[0m     return this.orderModel.findByPk(id, {
+#11 5.365 [7m  [0m [91m    ~~~~~~[0m
+#11 5.365 [96msrc/payment/payment.resolver.ts[0m:[93m8[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.365   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.365 
+#11 5.365 [7m8[0m   @Field()
+#11 5.365 [7m [0m [91m   ~~~~~~~[0m
+#11 5.365 [96msrc/payment/payment.resolver.ts[0m:[93m9[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'clientSecret' has no initializer and is not definitely assigned in the constructor.
+#11 5.365 
+#11 5.365 [7m9[0m   clientSecret: string;
+#11 5.365 [7m [0m [91m  ~~~~~~~~~~~~[0m
+#11 5.365 [96msrc/payment/payment.resolver.ts[0m:[93m17[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+#11 5.365   The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+#11 5.365 
+#11 5.365 [7m17[0m   @Mutation(() => PaymentIntent)
+#11 5.365 [7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 
+#11 5.365   [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+#11 5.365     [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+#11 5.365     [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365     An argument for 'descriptor' was not provided.
+#11 5.365 [96msrc/payment/payment.resolver.ts[0m:[93m17[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((orderId: number) => Promise<{ clientSecret: string; }>)'.
+#11 5.365   Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((orderId: number) => Promise<{ clientSecret: string; }>)'.
+#11 5.365 
+#11 5.365 [7m17[0m   @Mutation(() => PaymentIntent)
+#11 5.365 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 [96msrc/payment/payment.resolver.ts[0m:[93m19[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.365 
+#11 5.365 [7m19[0m     @Args('orderId', { type: () => ID }) orderId: number,
+#11 5.365 [7m  [0m [91m    ~[0m
+#11 5.365 [96msrc/payment/payment.service.ts[0m:[93m10[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.365 
+#11 5.365 [7m10[0m     @Inject(forwardRef(() => OrdersService))
+#11 5.365 [7m  [0m [91m    ~[0m
+#11 5.365 [96msrc/payment/payment.service.ts[0m:[93m14[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType '"2023-10-16"' is not assignable to type '"2022-11-15"'.
+#11 5.365 
+#11 5.365 [7m14[0m       apiVersion: '2023-10-16',
+#11 5.365 [7m  [0m [91m      ~~~~~~~~~~[0m
+#11 5.365 
+#11 5.365   [96mnode_modules/stripe/types/lib.d.ts[0m:[93m47[0m:[93m7[0m
+#11 5.365     [7m47[0m       apiVersion: LatestApiVersion;
+#11 5.365     [7m  [0m [96m      ~~~~~~~~~~[0m
+#11 5.365     The expected type comes from property 'apiVersion' which is declared here on type 'StripeConfig'
+#11 5.365 [96msrc/payment/payment.service.ts[0m:[93m30[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'string | null' is not assignable to type 'string'.
+#11 5.365   Type 'null' is not assignable to type 'string'.
+#11 5.365 
+#11 5.365 [7m30[0m       clientSecret: paymentIntent.client_secret,
+#11 5.365 [7m  [0m [91m      ~~~~~~~~~~~~[0m
+#11 5.365 
+#11 5.365   [96msrc/payment/payment.service.ts[0m:[93m18[0m:[93m57[0m
+#11 5.365     [7m18[0m   async createPaymentIntent(orderId: number): Promise<{ clientSecret: string }> {
+#11 5.365     [7m  [0m [96m                                                        ~~~~~~~~~~~~[0m
+#11 5.365     The expected type comes from property 'clientSecret' which is declared here on type '{ clientSecret: string; }'
+#11 5.365 [96msrc/payment/payment.service.ts[0m:[93m39[0m:[93m68[0m - [91merror[0m[90m TS2345: [0mArgument of type 'string | undefined' is not assignable to parameter of type 'string'.
+#11 5.365   Type 'undefined' is not assignable to type 'string'.
+#11 5.365 
+#11 5.365 [7m39[0m       event = this.stripe.webhooks.constructEvent(body, signature, endpointSecret);
+#11 5.365 [7m  [0m [91m                                                                   ~~~~~~~~~~~~~~[0m
+#11 5.365 [96msrc/payment/payment.service.ts[0m:[93m41[0m:[93m65[0m - [91merror[0m[90m TS18046: [0m'err' is of type 'unknown'.
+#11 5.365 
+#11 5.365 [7m41[0m       throw new Error(`Webhook signature verification failed: ${err.message}`);
+#11 5.365 [7m  [0m [91m                                                                ~~~[0m
+#11 5.365 [96msrc/payment/payment.service.ts[0m:[93m47[0m:[93m48[0m - [91merror[0m[90m TS2339: [0mProperty 'metadata' does not exist on type 'Object'.
+#11 5.365 
+#11 5.365 [7m47[0m         const orderId = parseInt(paymentIntent.metadata.orderId);
+#11 5.365 [7m  [0m [91m                                               ~~~~~~~~[0m
+#11 5.365 [96msrc/payment/payment.service.ts[0m:[93m48[0m:[93m46[0m - [91merror[0m[90m TS2307: [0mCannot find module '../models/order.model' or its corresponding type declarations.
+#11 5.365 
+#11 5.365 [7m48[0m         const { OrderStatus } = await import('../models/order.model');
+#11 5.365 [7m  [0m [91m                                             ~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 [96msrc/products/products.resolver.ts[0m:[93m9[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.365   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.365 
+#11 5.365 [7m9[0m   @Field()
+#11 5.365 [7m [0m [91m   ~~~~~~~[0m
+#11 5.365 [96msrc/products/products.resolver.ts[0m:[93m10[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'name' has no initializer and is not definitely assigned in the constructor.
+#11 5.365 
+#11 5.365 [7m10[0m   name: string;
+#11 5.365 [7m  [0m [91m  ~~~~[0m
+#11 5.365 [96msrc/products/products.resolver.ts[0m:[93m12[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.365   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.365 
+#11 5.365 [7m12[0m   @Field(() => Float)
+#11 5.365 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 [96msrc/products/products.resolver.ts[0m:[93m13[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'price' has no initializer and is not definitely assigned in the constructor.
+#11 5.365 
+#11 5.365 [7m13[0m   price: number;
+#11 5.365 [7m  [0m [91m  ~~~~~[0m
+#11 5.365 [96msrc/products/products.resolver.ts[0m:[93m15[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.365   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.365 
+#11 5.365 [7m15[0m   @Field({ nullable: true })
+#11 5.365 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 [96msrc/products/products.resolver.ts[0m:[93m18[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.365   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.365 
+#11 5.365 [7m18[0m   @Field(() => Int) // Correction : utiliser Int pour stock
+#11 5.365 [7m  [0m [91m   ~~~~~~~~~~~~~~~~[0m
+#11 5.365 [96msrc/products/products.resolver.ts[0m:[93m19[0m:[93m3[0m - [91merror[0m[90m TS2564: [0mProperty 'stock' has no initializer and is not definitely assigned in the constructor.
+#11 5.365 
+#11 5.365 [7m19[0m   stock: number;
+#11 5.365 [7m  [0m [91m  ~~~~~[0m
+#11 5.365 [96msrc/products/products.resolver.ts[0m:[93m21[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+#11 5.365   Argument of type 'undefined' is not assignable to parameter of type 'Object'.
+#11 5.365 
+#11 5.365 [7m21[0m   @Field({ nullable: true })
+#11 5.365 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 [96msrc/products/products.resolver.ts[0m:[93m29[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+#11 5.365   The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+#11 5.365 
+#11 5.365 [7m29[0m   @Query(() => [Product])
+#11 5.365 [7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 
+#11 5.365   [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+#11 5.365     [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+#11 5.365     [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365     An argument for 'descriptor' was not provided.
+#11 5.365 [96msrc/products/products.resolver.ts[0m:[93m29[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | (() => Promise<Product[]>)'.
+#11 5.365   Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | (() => Promise<Product[]>)'.
+#11 5.365 
+#11 5.365 [7m29[0m   @Query(() => [Product])
+#11 5.365 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 [96msrc/products/products.resolver.ts[0m:[93m34[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+#11 5.365   The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+#11 5.365 
+#11 5.365 [7m34[0m   @Query(() => Product)
+#11 5.365 [7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 
+#11 5.365   [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+#11 5.365     [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+#11 5.365     [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365     An argument for 'descriptor' was not provided.
+#11 5.365 [96msrc/products/products.resolver.ts[0m:[93m34[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: number) => Promise<Product>)'.
+#11 5.365   Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: number) => Promise<Product>)'.
+#11 5.365 
+#11 5.365 [7m34[0m   @Query(() => Product)
+#11 5.365 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 [96msrc/products/products.resolver.ts[0m:[93m35[0m:[93m17[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.365 
+#11 5.365 [7m35[0m   async product(@Args('id', { type: () => ID }) id: number) {
+#11 5.365 [7m  [0m [91m                ~[0m
+#11 5.365 [96msrc/products/products.resolver.ts[0m:[93m39[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+#11 5.365   The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+#11 5.365 
+#11 5.365 [7m39[0m   @Mutation(() => Product)
+#11 5.365 [7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 
+#11 5.365   [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+#11 5.365     [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+#11 5.365     [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365     An argument for 'descriptor' was not provided.
+#11 5.365 [96msrc/products/products.resolver.ts[0m:[93m39[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((input: CreateProductInput) => Promise<Product>)'.
+#11 5.365   Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((input: CreateProductInput) => Promise<Product>)'.
+#11 5.365 
+#11 5.365 [7m39[0m   @Mutation(() => Product)
+#11 5.365 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 [96msrc/products/products.resolver.ts[0m:[93m41[0m:[93m23[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.365 
+#11 5.365 [7m41[0m   async createProduct(@Args('input') input: CreateProductInput) {
+#11 5.365 [7m  [0m [91m                      ~[0m
+#11 5.365 [96msrc/products/products.resolver.ts[0m:[93m45[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+#11 5.365   The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+#11 5.365 
+#11 5.365 [7m45[0m   @Mutation(() => Product)
+#11 5.365 [7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 
+#11 5.365   [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+#11 5.365     [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+#11 5.365     [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365     An argument for 'descriptor' was not provided.
+#11 5.365 [96msrc/products/products.resolver.ts[0m:[93m45[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: number, input: CreateProductInput) => Promise<Product>)'.
+#11 5.365   Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: number, input: CreateProductInput) => Promise<Product>)'.
+#11 5.365 
+#11 5.365 [7m45[0m   @Mutation(() => Product)
+#11 5.365 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 [96msrc/products/products.resolver.ts[0m:[93m48[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.365 
+#11 5.365 [7m48[0m     @Args('id', { type: () => ID }) id: number,
+#11 5.365 [7m  [0m [91m    ~[0m
+#11 5.365 [96msrc/products/products.resolver.ts[0m:[93m49[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.365 
+#11 5.365 [7m49[0m     @Args('input') input: CreateProductInput,
+#11 5.365 [7m  [0m [91m    ~[0m
+#11 5.365 [96msrc/products/products.resolver.ts[0m:[93m54[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+#11 5.365   The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+#11 5.365 
+#11 5.365 [7m54[0m   @Mutation(() => Boolean)
+#11 5.365 [7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 
+#11 5.365   [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+#11 5.365     [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+#11 5.365     [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365     An argument for 'descriptor' was not provided.
+#11 5.365 [96msrc/products/products.resolver.ts[0m:[93m54[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: number) => Promise<boolean>)'.
+#11 5.365   Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: number) => Promise<boolean>)'.
+#11 5.365 
+#11 5.365 [7m54[0m   @Mutation(() => Boolean)
+#11 5.365 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 [96msrc/products/products.resolver.ts[0m:[93m56[0m:[93m23[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.365 
+#11 5.365 [7m56[0m   async deleteProduct(@Args('id', { type: () => ID }) id: number) {
+#11 5.365 [7m  [0m [91m                      ~[0m
+#11 5.365 [96msrc/products/products.service.ts[0m:[93m8[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.365 
+#11 5.365 [7m8[0m     @InjectModel(Product)
+#11 5.365 [7m [0m [91m    ~[0m
+#11 5.365 [96msrc/products/products.service.ts[0m:[93m21[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType 'Product | null' is not assignable to type 'Product'.
+#11 5.365   Type 'null' is not assignable to type 'Product'.
+#11 5.365 
+#11 5.365 [7m21[0m     return this.productModel.findByPk(id);
+#11 5.365 [7m  [0m [91m    ~~~~~~[0m
+#11 5.365 [96msrc/users/users.resolver.ts[0m:[93m12[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+#11 5.365   The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+#11 5.365 
+#11 5.365 [7m12[0m   @Query(() => [User])
+#11 5.365 [7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 
+#11 5.365   [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+#11 5.365     [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+#11 5.365     [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365     An argument for 'descriptor' was not provided.
+#11 5.365 [96msrc/users/users.resolver.ts[0m:[93m12[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | (() => Promise<User[]>)'.
+#11 5.365   Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | (() => Promise<User[]>)'.
+#11 5.365 
+#11 5.365 [7m12[0m   @Query(() => [User])
+#11 5.365 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 [96msrc/users/users.resolver.ts[0m:[93m17[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+#11 5.365   The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+#11 5.365 
+#11 5.365 [7m17[0m   @Query(() => User)
+#11 5.365 [7m  [0m [91m  ~~~~~~~~~~~~~~~~~~[0m
+#11 5.365 
+#11 5.365   [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+#11 5.365     [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+#11 5.365     [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+#11 5.365     An argument for 'descriptor' was not provided.
+#11 5.365 [96msrc/users/users.resolver.ts[0m:[93m17[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: number) => Promise<User>)'.
+#11 5.365   Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: number) => Promise<User>)'.
+#11 5.365 
+#11 5.365 [7m17[0m   @Query(() => User)
+#11 5.365 [7m  [0m [91m   ~~~~~~~~~~~~~~~~~[0m
+#11 5.365 [96msrc/users/users.resolver.ts[0m:[93m18[0m:[93m14[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.365 
+#11 5.365 [7m18[0m   async user(@Args('id', { type: () => ID }) id: number) {
+#11 5.365 [7m  [0m [91m             ~[0m
+#11 5.365 [96msrc/users/users.service.ts[0m:[93m8[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+#11 5.365 
+#11 5.365 [7m8[0m     @InjectModel(User)
+#11 5.365 [7m [0m [91m    ~[0m
+#11 5.365 [96msrc/users/users.service.ts[0m:[93m21[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType 'User | null' is not assignable to type 'User'.
+#11 5.365   Type 'null' is not assignable to type 'User'.
+#11 5.365 
+#11 5.365 [7m21[0m     return this.userModel.findByPk(id);
+#11 5.365 [7m  [0m [91m    ~~~~~~[0m
+#11 5.365 [96msrc/users/users.service.ts[0m:[93m25[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType 'User | null' is not assignable to type 'User'.
+#11 5.365   Type 'null' is not assignable to type 'User'.
+#11 5.365 
+#11 5.365 [7m25[0m     return this.userModel.findOne({ where: { email } });
+#11 5.365 [7m  [0m [91m    ~~~~~~[0m
+#11 5.365 
+#11 5.365 Found 166 error(s).
+#11 5.365 
+#11 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [7/7] RUN npm run build:
+5.365 [7m21[0m     return this.userModel.findByPk(id);
+5.365 [7m  [0m [91m    ~~~~~~[0m
+5.365 [96msrc/users/users.service.ts[0m:[93m25[0m:[93m5[0m - [91merror[0m[90m TS2322: [0mType 'User | null' is not assignable to type 'User'.
+5.365   Type 'null' is not assignable to type 'User'.
+5.365 
+5.365 [7m25[0m     return this.userModel.findOne({ where: { email } });
+5.365 [7m  [0m [91m    ~~~~~~[0m
+5.365 
+5.365 Found 166 error(s).
+5.365 
+------
+dockerfile:18
+--------------------
+  16 |     
+  17 |     # Build de l'application
+  18 | >>> RUN npm run build
+  19 |     
+  20 |     # Exposition du port
+--------------------
+ERROR: failed to solve: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+Service 'app' failed to build : Build failed
