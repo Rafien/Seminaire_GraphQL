@@ -1,5 +1,5 @@
 import { Table, Column, Model, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript';
-import { ObjectType, Field, ID } from '@nestjs/graphql';
+import { ObjectType, Field, ID, Int } from '@nestjs/graphql';
 import { Cart } from './cart.model';
 import { Product } from './product.model';
 
@@ -14,6 +14,7 @@ export class CartItem extends Model {
   })
   id: number;
 
+  @Field(() => Int)
   @Column({
     type: DataType.INTEGER,
     defaultValue: 1,

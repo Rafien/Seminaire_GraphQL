@@ -1,5 +1,5 @@
 import { Table, Column, Model, DataType, BelongsToMany } from 'sequelize-typescript';
-import { ObjectType, Field, ID, Float } from '@nestjs/graphql';
+import { ObjectType, Field, ID, Float, Int } from '@nestjs/graphql';
 import { Order } from './order.model';
 import { OrderProduct } from './order-product.model';
 
@@ -34,7 +34,7 @@ export class Product extends Model {
   })
   description: string;
 
-  @Field()
+  @Field(() => Int)
   @Column({
     type: DataType.INTEGER,
     defaultValue: 0,

@@ -26,4 +26,14 @@ export class OrdersResolver {
     @Context() context,
   ) {
     const userId = context.req.user.id;
-    return this.ordersService.createOrder(userId, shipp
+    return this.ordersService.createOrder(userId, shippingAddress);
+  }
+
+  @Mutation(() => Order)
+  async updateOrderStatus(
+    @Args('id', { type: () => ID }) id: number,
+    @Args('status', { type: () => OrderStatus }) status: OrderStatus,
+  ) {
+    return this.ordersService.updateStatus(id, status);
+  }
+}

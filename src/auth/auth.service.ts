@@ -1,13 +1,50 @@
-import { Module } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { AuthResolver } from './auth.resolver';
-import { UsersModule } from '../users/users.module';
-import { PassportModule } from '@nestjs/passport';
-import { JwtStrategy } from './jwt.strategy';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { UsersService } from '../users/users.service';
+import * as bcrypt from 'bcryptjs';
 
-@Module({
-  imports: [UsersModule, PassportModule],
-  providers: [AuthService, AuthResolver, JwtStrategy],
-  exports: [AuthService],
-})
-export class AuthModule {}
+@Injectable()
+export class AuthService {
+  constructor(
+    private usersService: UsersService,
+    private jwtService: JwtService,
+  ) {}
+
+  async register(name: string, email: string, password: string) {
+    const existingUser = await this.usersService.findByEmail(email);
+    if (existingUser) {
+      throw new UnauthorizedException('Email already exists');
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = await this.usersService.create({
+      name,
+      email,
+      password: hashedPassword,
+    });
+
+    const payload = { email: user.email, sub: user.id };
+    return {
+      access_token: this.jwtService.sign(payload),
+      user,
+    };
+  }
+
+  async login(email: string, password: string) {
+    const user = await this.usersService.findByEmail(email);
+    if (!user) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+
+    const payload = { email: user.email, sub: user.id };
+    return {
+      access_token: this.jwtService.sign(payload),
+      user,
+    };
+  }
+}
