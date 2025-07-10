@@ -32,7 +32,8 @@ export class UsersService {
     }
     
     await this.userModel.update(userData, { where: { id } });
-    return this.findOne(id)!;
+    const updatedUser = await this.findOne(id);
+    return updatedUser!; // Non-null assertion car on vient de vérifier
   }
 
   async remove(id: number): Promise<void> {

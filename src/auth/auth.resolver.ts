@@ -5,10 +5,10 @@ import { User } from '../models/user.model';
 @ObjectType()
 class AuthPayload {
   @Field()
-  access_token: string;
+  access_token!: string;
 
   @Field(() => User)
-  user: User;
+  user!: User;
 }
 
 @Resolver(() => AuthPayload)

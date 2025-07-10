@@ -9,4 +9,3 @@ export declare class CartService {
     removeFromCart(userId: number, productId: number): Promise<Cart>;
     clearCart(userId: number): Promise<Cart>;
 }
-//# sourceMappingURL=cart.service.d.ts.map

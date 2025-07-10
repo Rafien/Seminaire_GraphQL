@@ -1,11 +1,19 @@
 import { Cart } from '../models/cart.model';
 import { CartService } from './cart.service';
+interface AuthContext {
+    req: {
+        user: {
+            id: number;
+            email: string;
+        };
+    };
+}
 export declare class CartResolver {
     private cartService;
     constructor(cartService: CartService);
-    cart(context: any): Promise<Cart>;
-    addToCart(productId: number, quantity: number, context: any): Promise<Cart>;
-    removeFromCart(productId: number, context: any): Promise<Cart>;
-    clearCart(context: any): Promise<Cart>;
+    cart(context: AuthContext): Promise<Cart>;
+    addToCart(productId: number, quantity: number, context: AuthContext): Promise<Cart>;
+    removeFromCart(productId: number, context: AuthContext): Promise<Cart>;
+    clearCart(context: AuthContext): Promise<Cart>;
 }
-//# sourceMappingURL=cart.resolver.d.ts.map
+export {};

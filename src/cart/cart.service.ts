@@ -20,7 +20,7 @@ export class CartService {
     });
 
     if (!cart) {
-      cart = await this.cartModel.create({ userId });
+      cart = await this.cartModel.create({ userId } as any);
       // Recharger avec les associations
       cart = await this.cartModel.findByPk(cart.id, {
         include: [{ model: CartItem, include: [Product] }],
@@ -45,7 +45,7 @@ export class CartService {
         cartId: cart.id,
         productId,
         quantity,
-      });
+      } as any);
     }
 
     return this.findOrCreateCart(userId);

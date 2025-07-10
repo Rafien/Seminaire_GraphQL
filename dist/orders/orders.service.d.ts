@@ -14,4 +14,3 @@ export declare class OrdersService {
     findByUser(userId: number): Promise<Order[]>;
     updateStatus(id: number, status: OrderStatus): Promise<Order>;
 }
-//# sourceMappingURL=orders.service.d.ts.map

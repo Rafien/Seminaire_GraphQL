@@ -9,4 +9,3 @@ export declare class ProductsService {
     remove(id: number): Promise<void>;
     updateStock(id: number, quantity: number): Promise<Product>;
 }
-//# sourceMappingURL=products.service.d.ts.map

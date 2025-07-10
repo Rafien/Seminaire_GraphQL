@@ -8,7 +8,7 @@ export declare enum OrderStatus {
     DELIVERED = "DELIVERED",
     CANCELLED = "CANCELLED"
 }
-export declare class Order extends Model {
+export declare class Order extends Model<Order> {
     id: number;
     total: number;
     status: OrderStatus;
@@ -17,4 +17,3 @@ export declare class Order extends Model {
     user: User;
     products: Product[];
 }
-//# sourceMappingURL=order.model.d.ts.map

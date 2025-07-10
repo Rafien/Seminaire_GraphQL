@@ -1,110 +1,65 @@
 "use strict";
-var __esDecorate = (this && this.__esDecorate) || function (ctor, descriptorIn, decorators, contextIn, initializers, extraInitializers) {
-    function accept(f) { if (f !== void 0 && typeof f !== "function") throw new TypeError("Function expected"); return f; }
-    var kind = contextIn.kind, key = kind === "getter" ? "get" : kind === "setter" ? "set" : "value";
-    var target = !descriptorIn && ctor ? contextIn["static"] ? ctor : ctor.prototype : null;
-    var descriptor = descriptorIn || (target ? Object.getOwnPropertyDescriptor(target, contextIn.name) : {});
-    var _, done = false;
-    for (var i = decorators.length - 1; i >= 0; i--) {
-        var context = {};
-        for (var p in contextIn) context[p] = p === "access" ? {} : contextIn[p];
-        for (var p in contextIn.access) context.access[p] = contextIn.access[p];
-        context.addInitializer = function (f) { if (done) throw new TypeError("Cannot add initializers after decoration has completed"); extraInitializers.push(accept(f || null)); };
-        var result = (0, decorators[i])(kind === "accessor" ? { get: descriptor.get, set: descriptor.set } : descriptor[key], context);
-        if (kind === "accessor") {
-            if (result === void 0) continue;
-            if (result === null || typeof result !== "object") throw new TypeError("Object expected");
-            if (_ = accept(result.get)) descriptor.get = _;
-            if (_ = accept(result.set)) descriptor.set = _;
-            if (_ = accept(result.init)) initializers.unshift(_);
-        }
-        else if (_ = accept(result)) {
-            if (kind === "field") initializers.unshift(_);
-            else descriptor[key] = _;
-        }
-    }
-    if (target) Object.defineProperty(target, contextIn.name, descriptor);
-    done = true;
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __runInitializers = (this && this.__runInitializers) || function (thisArg, initializers, value) {
-    var useValue = arguments.length > 2;
-    for (var i = 0; i < initializers.length; i++) {
-        value = useValue ? initializers[i].call(thisArg, value) : initializers[i].call(thisArg);
-    }
-    return useValue ? value : void 0;
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __setFunctionName = (this && this.__setFunctionName) || function (f, name, prefix) {
-    if (typeof name === "symbol") name = name.description ? "[".concat(name.description, "]") : "";
-    return Object.defineProperty(f, "name", { configurable: true, value: prefix ? "".concat(prefix, " ", name) : name });
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthResolver = void 0;
 const graphql_1 = require("@nestjs/graphql");
+const auth_service_1 = require("./auth.service");
 const user_model_1 = require("../models/user.model");
-let AuthPayload = (() => {
-    let _classDecorators = [(0, graphql_1.ObjectType)()];
-    let _classDescriptor;
-    let _classExtraInitializers = [];
-    let _classThis;
-    let _access_token_decorators;
-    let _access_token_initializers = [];
-    let _access_token_extraInitializers = [];
-    let _user_decorators;
-    let _user_initializers = [];
-    let _user_extraInitializers = [];
-    var AuthPayload = _classThis = class {
-        constructor() {
-            this.access_token = __runInitializers(this, _access_token_initializers, void 0);
-            this.user = (__runInitializers(this, _access_token_extraInitializers), __runInitializers(this, _user_initializers, void 0));
-            __runInitializers(this, _user_extraInitializers);
-        }
-    };
-    __setFunctionName(_classThis, "AuthPayload");
-    (() => {
-        const _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create(null) : void 0;
-        _access_token_decorators = [(0, graphql_1.Field)()];
-        _user_decorators = [(0, graphql_1.Field)(() => user_model_1.User)];
-        __esDecorate(null, null, _access_token_decorators, { kind: "field", name: "access_token", static: false, private: false, access: { has: obj => "access_token" in obj, get: obj => obj.access_token, set: (obj, value) => { obj.access_token = value; } }, metadata: _metadata }, _access_token_initializers, _access_token_extraInitializers);
-        __esDecorate(null, null, _user_decorators, { kind: "field", name: "user", static: false, private: false, access: { has: obj => "user" in obj, get: obj => obj.user, set: (obj, value) => { obj.user = value; } }, metadata: _metadata }, _user_initializers, _user_extraInitializers);
-        __esDecorate(null, _classDescriptor = { value: _classThis }, _classDecorators, { kind: "class", name: _classThis.name, metadata: _metadata }, null, _classExtraInitializers);
-        AuthPayload = _classThis = _classDescriptor.value;
-        if (_metadata) Object.defineProperty(_classThis, Symbol.metadata, { enumerable: true, configurable: true, writable: true, value: _metadata });
-        __runInitializers(_classThis, _classExtraInitializers);
-    })();
-    return AuthPayload = _classThis;
-})();
-let AuthResolver = (() => {
-    let _classDecorators = [(0, graphql_1.Resolver)()];
-    let _classDescriptor;
-    let _classExtraInitializers = [];
-    let _classThis;
-    let _instanceExtraInitializers = [];
-    let _register_decorators;
-    let _login_decorators;
-    var AuthResolver = _classThis = class {
-        constructor(authService) {
-            this.authService = (__runInitializers(this, _instanceExtraInitializers), authService);
-        }
-        async register(name, email, password) {
-            return this.authService.register(name, email, password);
-        }
-        async login(email, password) {
-            return this.authService.login(email, password);
-        }
-    };
-    __setFunctionName(_classThis, "AuthResolver");
-    (() => {
-        const _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create(null) : void 0;
-        _register_decorators = [(0, graphql_1.Mutation)(() => AuthPayload)];
-        _login_decorators = [(0, graphql_1.Mutation)(() => AuthPayload)];
-        __esDecorate(_classThis, null, _register_decorators, { kind: "method", name: "register", static: false, private: false, access: { has: obj => "register" in obj, get: obj => obj.register }, metadata: _metadata }, null, _instanceExtraInitializers);
-        __esDecorate(_classThis, null, _login_decorators, { kind: "method", name: "login", static: false, private: false, access: { has: obj => "login" in obj, get: obj => obj.login }, metadata: _metadata }, null, _instanceExtraInitializers);
-        __esDecorate(null, _classDescriptor = { value: _classThis }, _classDecorators, { kind: "class", name: _classThis.name, metadata: _metadata }, null, _classExtraInitializers);
-        AuthResolver = _classThis = _classDescriptor.value;
-        if (_metadata) Object.defineProperty(_classThis, Symbol.metadata, { enumerable: true, configurable: true, writable: true, value: _metadata });
-        __runInitializers(_classThis, _classExtraInitializers);
-    })();
-    return AuthResolver = _classThis;
-})();
+let AuthPayload = class AuthPayload {
+};
+__decorate([
+    (0, graphql_1.Field)(),
+    __metadata("design:type", String)
+], AuthPayload.prototype, "access_token", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => user_model_1.User),
+    __metadata("design:type", user_model_1.User)
+], AuthPayload.prototype, "user", void 0);
+AuthPayload = __decorate([
+    (0, graphql_1.ObjectType)()
+], AuthPayload);
+let AuthResolver = class AuthResolver {
+    constructor(authService) {
+        this.authService = authService;
+    }
+    async register(name, email, password) {
+        return this.authService.register(name, email, password);
+    }
+    async login(email, password) {
+        return this.authService.login(email, password);
+    }
+};
 exports.AuthResolver = AuthResolver;
+__decorate([
+    (0, graphql_1.Mutation)(() => AuthPayload),
+    __param(0, (0, graphql_1.Args)('name')),
+    __param(1, (0, graphql_1.Args)('email')),
+    __param(2, (0, graphql_1.Args)('password')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, String]),
+    __metadata("design:returntype", Promise)
+], AuthResolver.prototype, "register", null);
+__decorate([
+    (0, graphql_1.Mutation)(() => AuthPayload),
+    __param(0, (0, graphql_1.Args)('email')),
+    __param(1, (0, graphql_1.Args)('password')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Promise)
+], AuthResolver.prototype, "login", null);
+exports.AuthResolver = AuthResolver = __decorate([
+    (0, graphql_1.Resolver)(() => AuthPayload),
+    __metadata("design:paramtypes", [auth_service_1.AuthService])
+], AuthResolver);
 //# sourceMappingURL=auth.resolver.js.map

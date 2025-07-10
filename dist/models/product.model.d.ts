@@ -1,12 +1,11 @@
 import { Model } from 'sequelize-typescript';
 import { Order } from './order.model';
-export declare class Product extends Model {
+export declare class Product extends Model<Product> {
     id: number;
     name: string;
     price: number;
-    description: string;
+    description?: string;
     stock: number;
-    image: string;
+    image?: string;
     orders: Order[];
 }
-//# sourceMappingURL=product.model.d.ts.map

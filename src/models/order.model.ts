@@ -18,7 +18,7 @@ registerEnumType(OrderStatus, {
 
 @ObjectType()
 @Table({ tableName: 'orders' })
-export class Order extends Model {
+export class Order extends Model<Order> {
   @Field(() => ID)
   @Column({
     type: DataType.INTEGER,

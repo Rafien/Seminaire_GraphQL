@@ -5,7 +5,7 @@ import { OrderProduct } from './order-product.model';
 
 @ObjectType()
 @Table({ tableName: 'products' })
-export class Product extends Model {
+export class Product extends Model<Product> {
   @Field(() => ID)
   @Column({
     type: DataType.INTEGER,
@@ -32,7 +32,7 @@ export class Product extends Model {
   @Column({
     type: DataType.TEXT,
   })
-  description: string;
+  description?: string;
 
   @Field(() => Int)
   @Column({
@@ -45,7 +45,7 @@ export class Product extends Model {
   @Column({
     type: DataType.STRING,
   })
-  image: string;
+  image?: string;
 
   @Field(() => [Order])
   @BelongsToMany(() => Order, () => OrderProduct)

@@ -17,4 +17,3 @@ export declare class ProductsResolver {
     deleteProduct(id: number): Promise<boolean>;
 }
 export {};
-//# sourceMappingURL=products.resolver.d.ts.map

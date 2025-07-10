@@ -1,0 +1,93 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Product {
+  id: ID!
+  name: String!
+  price: Float!
+  description: String
+  stock: Int!
+  image: String
+  orders: [Order!]!
+}
+
+type Order {
+  id: ID!
+  total: Float!
+  status: OrderStatus!
+  shippingAddress: String!
+  user: User!
+  products: [Product!]!
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+type CartItem {
+  id: ID!
+  quantity: Int!
+  cart: Cart!
+  product: Product!
+}
+
+type Cart {
+  id: ID!
+  user: User!
+  items: [CartItem!]!
+  total: Float!
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  orders: [Order!]!
+  cart: Cart
+}
+
+type PaymentIntent {
+  clientSecret: String!
+}
+
+type AuthPayload {
+  access_token: String!
+  user: User!
+}
+
+type Query {
+  users: [User!]!
+  user(id: ID!): User!
+  products: [Product!]!
+  product(id: ID!): Product!
+  orders: [Order!]!
+  order(id: ID!): Order!
+  cart: Cart!
+}
+
+type Mutation {
+  register(name: String!, email: String!, password: String!): AuthPayload!
+  login(email: String!, password: String!): AuthPayload!
+  createProduct(input: CreateProductInput!): Product!
+  updateProduct(id: ID!, input: CreateProductInput!): Product!
+  deleteProduct(id: ID!): Boolean!
+  createOrder(shippingAddress: String!): Order!
+  updateOrderStatus(id: ID!, status: OrderStatus!): Order!
+  addToCart(productId: ID!, quantity: Float!): Cart!
+  removeFromCart(productId: ID!): Cart!
+  clearCart: Cart!
+  createPaymentIntent(orderId: ID!): PaymentIntent!
+}
+
+input CreateProductInput {
+  name: String!
+  price: Float!
+  description: String
+  stock: Int!
+  image: String
+}

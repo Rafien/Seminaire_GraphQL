@@ -4,13 +4,22 @@ import { AuthGuard } from '@nestjs/passport';
 import { Order, OrderStatus } from '../models/order.model';
 import { OrdersService } from './orders.service';
 
+interface AuthContext {
+  req: {
+    user: {
+      id: number;
+      email: string;
+    };
+  };
+}
+
 @Resolver(() => Order)
 @UseGuards(AuthGuard('jwt'))
 export class OrdersResolver {
   constructor(private ordersService: OrdersService) {}
 
   @Query(() => [Order])
-  async orders(@Context() context) {
+  async orders(@Context() context: AuthContext) {
     const userId = context.req.user.id;
     return this.ordersService.findByUser(userId);
   }
@@ -23,7 +32,7 @@ export class OrdersResolver {
   @Mutation(() => Order)
   async createOrder(
     @Args('shippingAddress') shippingAddress: string,
-    @Context() context,
+    @Context() context: AuthContext,
   ) {
     const userId = context.req.user.id;
     return this.ordersService.createOrder(userId, shippingAddress);

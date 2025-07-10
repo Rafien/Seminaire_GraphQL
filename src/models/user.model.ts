@@ -5,7 +5,7 @@ import { Cart } from './cart.model';
 
 @ObjectType()
 @Table({ tableName: 'users' })
-export class User extends Model {
+export class User extends Model<User> {
   @Field(() => ID)
   @Column({
     type: DataType.INTEGER,
@@ -41,5 +41,5 @@ export class User extends Model {
 
   @Field(() => Cart, { nullable: true })
   @HasOne(() => Cart)
-  cart: Cart;
+  cart?: Cart;
 }
