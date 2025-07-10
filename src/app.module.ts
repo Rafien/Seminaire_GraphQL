@@ -17,7 +17,7 @@ import { ProductsModule } from './products/products.module';
 import { OrdersModule } from './orders/orders.module';
 import { CartModule } from './cart/cart.module';
 import { PaymentModule } from './payment/payment.module';
-import { AuthModule } from './auth/auth.service';
+import { AuthModule } from './auth/auth.module'; // Correction : .module au lieu de .service
 
 @Module({
   imports: [
@@ -54,4 +54,3 @@ import { AuthModule } from './auth/auth.service';
     PaymentModule,
   ],
 })
-export class AppModule {}

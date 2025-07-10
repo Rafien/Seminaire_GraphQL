@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, ID, InputType, Field, Float } from '@nestjs/graphql';
+import { Resolver, Int, Query, Mutation, Args, ID, InputType, Field, Float } from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Product } from '../models/product.model';
@@ -15,7 +15,7 @@ class CreateProductInput {
   @Field({ nullable: true })
   description?: string;
 
-  @Field()
+  @Field(() => Int) // Correction : utiliser Int pour stock
   stock: number;
 
   @Field({ nullable: true })

@@ -1,12 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject, forwardRef } from '@nestjs/common';
 import Stripe from 'stripe';
-import { OrdersService } from '../orders/orders.service';
 
 @Injectable()
 export class PaymentService {
   private stripe: Stripe;
 
-  constructor(private ordersService: OrdersService) {
+  constructor(
+    @Inject(forwardRef(() => 'OrdersService'))
+    private ordersService: any, // Utiliser any pour éviter la dépendance circulaire
+  ) {
     this.stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_...', {
       apiVersion: '2023-10-16',
     });
@@ -42,7 +44,9 @@ export class PaymentService {
       case 'payment_intent.succeeded':
         const paymentIntent = event.data.object;
         const orderId = parseInt(paymentIntent.metadata.orderId);
-        await this.ordersService.updateStatus(orderId, 'PROCESSING' as any);
+        // Importer OrderStatus correctement
+        const { OrderStatus } = await import('../models/order.model');
+        await this.ordersService.updateStatus(orderId, OrderStatus.PROCESSING);
         break;
       default:
         console.log(`Unhandled event type ${event.type}`);
